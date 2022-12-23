@@ -13,15 +13,6 @@ variable "stack" {
   type        = string
 }
 
-variable "resource_group_name" {
-  type        = string
-  description = "Resource group to deploy to"
-}
-
 variable "client_name" {
-  type = string
-}
-
-variable "azure_tenant_id" {
   type = string
 }
