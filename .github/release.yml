@@ -1,0 +1,81 @@
+name: Validate, build & Deploy
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches:
+      - master
+
+jobs:
+  lint-terraform:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Cache Tflint dir
+        uses: actions/cache@v3
+        with:
+          path: ~/.tflint.d/plugins
+          key: ${{ runner.os }}-tflint-${{ hashFiles('.tflint.hcl') }}
+
+      - name: Setup TFLint
+        uses: terraform-linters/setup-tflint@v2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          tflint_version: v0.38.1
+
+      - name: Init TFLint
+        run: tflint --init
+
+      - name: Run TFLint
+        run: tflint -f compact
+
+      - name: tfsec
+        uses: aquasecurity/tfsec-action@v1.0.0
+
+  # lint-application:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v3
+
+  #     - name: Setup node
+  #       uses: volta-cli/action@v3
+
+  #     - name: cache node_modules
+  #       uses: actions/cache@v3
+  #       with:
+  #         path: "**/node_modules"
+  #         key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+
+  #     - name: Install
+  #       run: yarn install --frozen-lockfile --dev
+
+  #     - name: Lint
+  #       run: yarn lint:check
+
+  # build-and-deploy:
+  #   if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
+  #   runs-on: ubuntu-latest
+  #   needs:
+  #     - lint-frontend
+  #     - lint-terraform
+  #   steps:
+  #     - uses: actions/checkout@v3
+
+  #     - name: Setup node
+  #       uses: volta-cli/action@v3
+
+  #     - name: cache node_modules
+  #       uses: actions/cache@v3
+  #       with:
+  #         path: "**/node_modules"
+  #         key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+
+  #     - name: Install
+  #       run: yarn install --frozen-lockfile --production
+
+  #     - name: Build
+  #       run: yarn build
