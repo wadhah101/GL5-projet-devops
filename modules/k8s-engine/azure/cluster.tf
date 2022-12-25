@@ -19,4 +19,9 @@ resource "azurerm_kubernetes_cluster" "cluster" {
   oms_agent {
     log_analytics_workspace_id = module.omslogs.log_analytics_workspace_id
   }
+
+  network_profile {
+    network_plugin = "kubenet"
+    network_policy = "calico"
+  }
 }
