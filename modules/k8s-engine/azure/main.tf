@@ -9,3 +9,9 @@ module "azure_region" {
 
   azure_region = var.location
 }
+
+module "naming" {
+  source  = "Azure/naming/azurerm"
+  version = "0.2.0"
+  suffix  = [var.client_name, module.azure_region.location_short, var.environment, var.stack]
+}

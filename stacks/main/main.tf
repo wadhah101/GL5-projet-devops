@@ -25,11 +25,10 @@ module "democluster" {
 
   source = "../../modules/k8s-engine/azure"
 
-  location        = module.azure_region.location
-  client_name     = var.client_name
-  environment     = var.environment
-  stack           = var.stack
-  azure_tenant_id = data.azurerm_client_config.current.tenant_id
+  location    = module.azure_region.location
+  client_name = var.client_name
+  environment = var.environment
+  stack       = var.stack
 
   resource_group_name = module.rg.resource_group_name
 }

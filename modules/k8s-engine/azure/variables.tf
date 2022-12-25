@@ -22,6 +22,6 @@ variable "client_name" {
   type = string
 }
 
-variable "azure_tenant_id" {
-  type = string
-}
+# variable "azure_tenant_id" {
+#   type = string
+# }

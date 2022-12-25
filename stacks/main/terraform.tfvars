@@ -1,4 +1,4 @@
-client_name = "w"
+client_name = "ww"
 environment = "demo"
 location    = "francecentral"
 stack       = "project"
