@@ -17,11 +17,6 @@ module "rg" {
 
 
 module "democluster" {
-
-  depends_on = [
-    module.rg
-  ]
-
   source = "../../modules/k8s-engine/azure"
 
   location    = module.azure_region.location
@@ -37,18 +32,24 @@ provider "azurerm" {
 
   }
 }
-module "istio" {
-  source = "../../modules/istio"
+# module "istio" {
+#   depends_on = [
+#     module.democluster
+#   ]
+#   source = "../../modules/istio"
 
-  client_name = var.client_name
-  environment = var.environment
-  stack       = var.stack
-}
+#   client_name = var.client_name
+#   environment = var.environment
+#   stack       = var.stack
+# }
 
-module "argo" {
-  source = "../../modules/argocd"
+# module "argo" {
+#   depends_on = [
+#     module.democluster
+#   ]
+#   source = "../../modules/argocd"
 
-  client_name = var.client_name
-  environment = var.environment
-  stack       = var.stack
-}
+#   client_name = var.client_name
+#   environment = var.environment
+#   stack       = var.stack
+# }
