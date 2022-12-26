@@ -1,15 +1,17 @@
 resource "azurerm_kubernetes_cluster" "cluster" {
-  name                = module.naming.kubernetes_cluster.name
-  location            = module.azure_region.location
+  name       = module.naming.kubernetes_cluster.name
+  location   = module.azure_region.location
+  dns_prefix = module.naming.kubernetes_cluster.name_unique
+
   resource_group_name = var.resource_group_name
-  dns_prefix          = module.naming.kubernetes_cluster.name_unique
 
   sku_tier = "Free"
 
   default_node_pool {
-    name       = "default"
-    node_count = 1
-    vm_size    = "Standard_D2_v2"
+    name      = "default"
+    min_count = 1
+    max_count = 3
+    vm_size   = "Standard_D2_v2"
   }
 
   identity {
