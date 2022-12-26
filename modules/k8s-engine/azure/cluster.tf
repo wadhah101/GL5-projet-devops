@@ -8,10 +8,11 @@ resource "azurerm_kubernetes_cluster" "cluster" {
   sku_tier = "Free"
 
   default_node_pool {
-    name      = "default"
-    min_count = 1
-    max_count = 3
-    vm_size   = "Standard_D2_v2"
+    name                = "default"
+    enable_auto_scaling = true
+    min_count           = 1
+    max_count           = 3
+    vm_size             = "Standard_D2_v2"
   }
 
   identity {
