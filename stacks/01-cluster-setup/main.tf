@@ -13,3 +13,11 @@ module "argo" {
   environment = var.environment
   stack       = var.stack
 }
+
+module "prometheus" {
+  source = "../../modules/prometheus-stack"
+
+  client_name = var.client_name
+  environment = var.environment
+  stack       = var.stack
+}

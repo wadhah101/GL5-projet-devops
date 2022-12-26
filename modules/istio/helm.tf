@@ -21,5 +21,4 @@ resource "helm_release" "ingress" {
   repository = "https://istio-release.storage.googleapis.com/charts"
   chart      = "gateway"
   namespace  = kubernetes_namespace.ingress_namespace.metadata[0].name
-
 }
