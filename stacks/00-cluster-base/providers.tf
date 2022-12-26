@@ -18,3 +18,8 @@ provider "kubernetes" {
   cluster_ca_certificate = base64decode(module.democluster.kube_config.0.cluster_ca_certificate)
 }
 
+provider "azurerm" {
+  features {
+
+  }
+}
