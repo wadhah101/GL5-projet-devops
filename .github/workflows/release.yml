@@ -41,8 +41,9 @@ jobs:
         run: tflint -f compact
 
       - name: tfsec
-        working-directory: ${{ matrix.folder }}
         uses: aquasecurity/tfsec-action@v1.0.0
+        with:
+          working_directory: ${{ matrix.folder }}
 
   # lint-application:
   #   runs-on: ubuntu-latest
