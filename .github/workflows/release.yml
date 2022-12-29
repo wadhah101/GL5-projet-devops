@@ -16,9 +16,6 @@ jobs:
       matrix:
         folder: ["stacks/00-cluster-base", "stacks/01-cluster-setup"]
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ${{ matrix.folder }}
 
     steps:
       - uses: actions/checkout@v3
@@ -36,12 +33,15 @@ jobs:
           tflint_version: v0.38.1
 
       - name: Init TFLint
+        working-directory: ${{ matrix.folder }}
         run: tflint --init
 
       - name: Run TFLint
+        working-directory: ${{ matrix.folder }}
         run: tflint -f compact
 
       - name: tfsec
+        working-directory: ${{ matrix.folder }}
         uses: aquasecurity/tfsec-action@v1.0.0
 
   # lint-application:
