@@ -11,6 +11,7 @@ on:
 
 jobs:
   lint-terraform:
+    continue-on-error: true
     strategy:
       matrix:
         folder: ["stacks/00-cluster-base", "stacks/01-cluster-setup"]
