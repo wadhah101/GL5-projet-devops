@@ -11,7 +11,14 @@ on:
 
 jobs:
   lint-terraform:
+    strategy:
+      matrix:
+        folder: ["stacks/00-cluster-base", "stacks/01-cluster-setup"]
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ matrix.folder }}
+
     steps:
       - uses: actions/checkout@v3
 
