@@ -22,7 +22,7 @@ async function bootstrap() {
   const { APP_HOST, APP_PORT } = config;
   app.useGlobalPipes(new ValidationPipe());
   await app.listen(APP_PORT);
-  Logger.log(`🚀 Application is running on: http://localhost:${APP_PORT}`);
+  Logger.log(`🚀 Application is running on: http://${APP_HOST}:${APP_PORT}`);
 }
 
 bootstrap();

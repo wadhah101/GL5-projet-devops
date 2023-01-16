@@ -18,6 +18,7 @@
       "@my-workspace/config-helpers": ["libs/config-helpers/src/index.ts"],
       "@my-workspace/healthcheck": ["libs/healthcheck/src/index.ts"],
       "@my-workspace/loggers": ["libs/loggers/src/index.ts"],
+      "@my-workspace/opentelemetry": ["libs/opentelemetry/src/index.ts"],
       "@my-workspace/protos": ["libs/protos/src/index.ts"],
       "@my-workspace/schemas": ["libs/schemas/src/index.ts"]
     }
