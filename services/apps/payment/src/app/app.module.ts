@@ -4,9 +4,10 @@ import { MongooseModule } from '@nestjs/mongoose';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { paymentConfig } from './constants';
+import { paymentConfig } from './config';
 import { PaymentOption, PaymentOptionSchema } from '@my-workspace/schemas';
 import { HealthCheckModule } from '@my-workspace/healthcheck';
+import { OpenTelModule } from '@my-workspace/opentelemetry';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { HealthCheckModule } from '@my-workspace/healthcheck';
       memory: true,
       mongo: true,
     }),
+    OpenTelModule,
     ConfigModule.forFeature(paymentConfig),
     MongooseModule.forRootAsync({
       imports: [ConfigModule.forFeature(paymentConfig)],

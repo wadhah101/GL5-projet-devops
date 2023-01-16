@@ -7,6 +7,8 @@ export interface PaymentConfig {
   APP_HOST: string;
   REDIS_URL: string;
   MONGO_URL: string;
+  JEAGER_AGENT_HOST?: string;
+  JEAGER_AGENT_PORT?: number;
 }
 
 export const paymentSchema =
@@ -22,6 +24,8 @@ export const paymentSchema =
         APP_HOST: Joi.string().required(),
         REDIS_URL: Joi.string().required(),
         MONGO_URL: Joi.string().required(),
+        JEAGER_AGENT_HOST: Joi.string().required(),
+        JEAGER_AGENT_PORT: Joi.number().required(),
       });
 
 export const paymentCfgSymbol = '@my-workspace/payment:config';

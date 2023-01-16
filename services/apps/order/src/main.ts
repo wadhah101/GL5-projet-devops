@@ -11,6 +11,7 @@ import { Transport } from '@nestjs/microservices';
 import { AppModule } from './app/app.module';
 import { orderCfgSymbol, OrderConfig } from './app/config';
 import { winstonLoggerFactory } from '@my-workspace/loggers';
+import { otelSetup } from '@my-workspace/opentelemetry';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
@@ -21,12 +22,17 @@ async function bootstrap() {
   const appConfig = await app
     .get(ConfigService)
     .get<OrderConfig>(orderCfgSymbol);
-  const { APP_HOST, APP_PORT } = appConfig;
+  const { APP_HOST, APP_PORT, JEAGER_AGENT_HOST, JEAGER_AGENT_PORT } =
+    appConfig;
   const ms = (await app).connectMicroservice({
     transport: Transport.REDIS,
     options: {
       url: `redis://${appConfig.REDIS_HOST}:${appConfig.REDIS_PORT}`,
     },
+  });
+  await otelSetup({
+    JeagerAgentHost: JEAGER_AGENT_HOST,
+    JeagerAgentPort: JEAGER_AGENT_PORT,
   });
   ms.listen().then(() =>
     Logger.log(

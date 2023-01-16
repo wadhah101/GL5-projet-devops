@@ -9,6 +9,8 @@ export interface GatewayConfig {
   ORDER_SERVICE_PORT: number;
   REDIS_HOST: string;
   REDIS_PORT: number;
+  JEAGER_AGENT_HOST?: string;
+  JEAGER_AGENT_PORT?: number;
 }
 export const gatewaySchema =
   process.env.ENV === 'dev'
@@ -27,6 +29,8 @@ export const gatewaySchema =
         ORDER_SERVICE_PORT: Joi.number().required(),
         REDIS_HOST: Joi.string().required(),
         REDIS_PORT: Joi.number().required(),
+        JEAGER_AGENT_HOST: Joi.string().required(),
+        JEAGER_AGENT_PORT: Joi.number().required(),
       });
 export const gatewayCfgSymbol = '@my-workspace/gateway:config';
 export const gatewayConfig = registerAs<GatewayConfig>(gatewayCfgSymbol, () =>
