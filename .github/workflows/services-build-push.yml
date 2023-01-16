@@ -4,8 +4,8 @@ on:
   push:
     branches:
       - master
-    paths:
-      - "services"
+    # paths:
+    #   - "services"
 
 jobs:
   build-deploy:
