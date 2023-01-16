@@ -39,7 +39,7 @@ export class AppService {
         )
       ),
       finalize(() => {
-        currentSpan.addEvent('Order creation request ended');
+        currentSpan.addEvent('Order creation request ended', new Date());
         currentSpan.end();
       })
     );
