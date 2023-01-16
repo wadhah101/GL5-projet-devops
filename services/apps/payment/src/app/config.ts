@@ -23,8 +23,8 @@ export const paymentSchema =
         MONGO_URL: Joi.string().default('mongodb://localhost:27017/payment'),
       })
     : Joi.object<PaymentConfig>({
-        APP_PORT: Joi.number().required(),
-        APP_HOST: Joi.string().required(),
+        APP_PORT: Joi.number().default(80),
+        APP_HOST: Joi.string().default('0.0.0.0'),
         REDIS_HOST: Joi.string().required(),
         REDIS_PORT: Joi.number().default(6379),
         MONGO_URL: Joi.string().required(),

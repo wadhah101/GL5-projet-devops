@@ -26,7 +26,7 @@ const otelSDKFactory = (config: {
   new NodeSDK({
     serviceName: config.serviceName,
     metricReader: new PrometheusExporter({
-      port: config.MetricsPort || 8080,
+      endpoint: '/metrics',
     }),
     traceExporter: new JaegerExporter({
       port: config.JeagerAgentPort,

@@ -26,8 +26,8 @@ export const orderSchema =
         REDIS_PORT: Joi.number().default(6379),
       })
     : Joi.object<OrderConfig>({
-        APP_PORT: Joi.number().required(),
-        APP_HOST: Joi.string().required(),
+        APP_PORT: Joi.number().default(80),
+        APP_HOST: Joi.string().default('0.0.0.0'),
         MONGO_URL: Joi.string().required(),
         ORDER_SERVICE_HOST: Joi.string().required(),
         ORDER_SERVICE_PORT: Joi.number().required(),
