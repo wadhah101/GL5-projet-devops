@@ -36,6 +36,6 @@ jobs:
           file: ${{ matrix.service.folder }}/Dockerfile
           context: services
           push: true
-          tags:
-            - wadhah101/${{ matrix.service.name }}:latest
-            - wadhah101/${{ matrix.service.name }}:${{ github.sha }}
+          tags: |
+            wadhah101/${{ matrix.service.name }}:latest
+            wadhah101/${{ matrix.service.name }}:${{ github.sha }}
