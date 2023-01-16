@@ -1,1 +1,2 @@
-export * from './lib/opentelemetry.module';
+export * from './lib/otel.module';
+export * from './lib/tracing';

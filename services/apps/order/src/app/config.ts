@@ -10,6 +10,8 @@ export interface OrderConfig {
   ORDER_SERVICE_PORT: number;
   REDIS_HOST: string;
   REDIS_PORT: number;
+  JEAGER_AGENT_HOST?: string;
+  JEAGER_AGENT_PORT?: number;
 }
 export const orderSchema =
   process.env.ENV === 'dev'
@@ -30,6 +32,8 @@ export const orderSchema =
         ORDER_SERVICE_PORT: Joi.number().required(),
         REDIS_HOST: Joi.string().required(),
         REDIS_PORT: Joi.number().required(),
+        JEAGER_AGENT_HOST: Joi.string().required(),
+        JEAGER_AGENT_PORT: Joi.number().required(),
       });
 export const orderCfgSymbol = '@my-workspace/order:config';
 export const orderConfig = registerAs<OrderConfig>(orderCfgSymbol, () =>

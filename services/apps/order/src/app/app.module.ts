@@ -9,6 +9,7 @@ import { Order, OrderSchema } from '@my-workspace/schemas';
 import { ClientProxyFactory, Transport } from '@nestjs/microservices';
 import { MESSAGING_SERVICE_TOKEN } from './constants';
 import { HealthCheckModule } from '@my-workspace/healthcheck';
+import { OpenTelModule } from '@my-workspace/opentelemetry';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { HealthCheckModule } from '@my-workspace/healthcheck';
       memory: true,
       mongo: true,
     }),
+    OpenTelModule,
     ConfigModule.forFeature(orderConfig),
     MongooseModule.forRootAsync({
       imports: [ConfigModule.forFeature(orderConfig)],

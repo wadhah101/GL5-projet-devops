@@ -7,7 +7,7 @@ import { AppService } from './app.service';
 import { gatewayConfig } from './config';
 import { MESSAGING_SERVICE_TOKEN } from './constants';
 import { HealthCheckModule } from '@my-workspace/healthcheck';
-
+import { OpenTelModule } from '@my-workspace/opentelemetry';
 @Module({
   imports: [
     ConfigModule.forFeature(gatewayConfig),
@@ -15,6 +15,7 @@ import { HealthCheckModule } from '@my-workspace/healthcheck';
       memory: true,
       mongo: false,
     }),
+    OpenTelModule,
   ],
   controllers: [OrderController],
   providers: [
