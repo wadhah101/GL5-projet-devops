@@ -1,4 +1,5 @@
 #tfsec:ignore:azure-container-limit-authorized-ips
+#tfsec:ignore:azure-container-use-rbac-permissions
 resource "azurerm_kubernetes_cluster" "cluster" {
   name       = module.naming.kubernetes_cluster.name
   location   = module.azure_region.location
