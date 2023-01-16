@@ -12,9 +12,14 @@ import {
   Transport,
 } from '@nestjs/microservices';
 import { MESSAGING_SERVICE_TOKEN } from './constants';
+import { HealthCheckModule } from '@my-workspace/healthcheck';
 
 @Module({
   imports: [
+    HealthCheckModule.forRoot({
+      memory: true,
+      mongo: true,
+    }),
     ConfigModule.forFeature(orderConfig),
     MongooseModule.forRootAsync({
       imports: [ConfigModule.forFeature(orderConfig)],

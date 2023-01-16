@@ -6,9 +6,14 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { paymentConfig } from './constants';
 import { PaymentOption, PaymentOptionSchema } from '@my-workspace/schemas';
+import { HealthCheckModule } from '@my-workspace/healthcheck';
 
 @Module({
   imports: [
+    HealthCheckModule.forRoot({
+      memory: true,
+      mongo: true,
+    }),
     ConfigModule.forFeature(paymentConfig),
     MongooseModule.forRootAsync({
       imports: [ConfigModule.forFeature(paymentConfig)],
