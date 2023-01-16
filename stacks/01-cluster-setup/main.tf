@@ -1,10 +1,10 @@
-module "istio" {
-  source = "../../modules/istio"
+# module "istio" {
+#   source = "../../modules/istio"
 
-  client_name = var.client_name
-  environment = var.environment
-  stack       = var.stack
-}
+#   client_name = var.client_name
+#   environment = var.environment
+#   stack       = var.stack
+# }
 
 module "argo" {
   source = "../../modules/argocd"
@@ -14,26 +14,34 @@ module "argo" {
   stack       = var.stack
 }
 
-module "prometheus" {
-  source = "../../modules/prometheus-stack"
+module "ingress" {
+  source = "../../modules/ingress"
 
   client_name = var.client_name
   environment = var.environment
   stack       = var.stack
 }
 
-module "redis" {
-  source = "../../modules/redis"
+# module "prometheus" {
+#   source = "../../modules/prometheus-stack"
 
-  client_name = var.client_name
-  environment = var.environment
-  stack       = var.stack
-}
+#   client_name = var.client_name
+#   environment = var.environment
+#   stack       = var.stack
+# }
 
-module "mongodb" {
-  source = "../../modules/mongo"
+# module "redis" {
+#   source = "../../modules/redis"
 
-  client_name = var.client_name
-  environment = var.environment
-  stack       = var.stack
-}
+#   client_name = var.client_name
+#   environment = var.environment
+#   stack       = var.stack
+# }
+
+# module "mongodb" {
+#   source = "../../modules/mongo"
+
+#   client_name = var.client_name
+#   environment = var.environment
+#   stack       = var.stack
+# }
