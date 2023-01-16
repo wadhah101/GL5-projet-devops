@@ -25,6 +25,8 @@ async function bootstrap() {
   await otelSetup({
     JeagerAgentHost: JEAGER_AGENT_HOST,
     JeagerAgentPort: JEAGER_AGENT_PORT,
+    MetricsPort: 8080,
+    serviceName: 'api-gateway',
   });
   await app.listen(APP_PORT);
   Logger.log(`🚀 Application is running on: http://${APP_HOST}:${APP_PORT}`);

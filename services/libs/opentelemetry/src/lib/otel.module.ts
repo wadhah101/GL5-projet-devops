@@ -1,5 +1,6 @@
-import { DynamicModule, Module } from '@nestjs/common';
+import { DynamicModule, Global, Module } from '@nestjs/common';
 import { OpenTelemetryModule } from 'nestjs-otel';
+import { TraceService } from './trace.service';
 
 export interface OpenTelemetryModuleOptions {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -17,7 +18,11 @@ export declare type AttributeValue =
   | Array<null | undefined | number>
   | Array<null | undefined | boolean>;
 
-@Module({})
+@Global()
+@Module({
+  providers: [TraceService],
+  exports: [TraceService],
+})
 export class OpenTelModule {
   static forRoot(options?: OpenTelemetryModuleOptions): DynamicModule {
     return {
@@ -36,6 +41,8 @@ export class OpenTelModule {
           },
         }),
       ],
+      providers: [TraceService],
+      exports: [TraceService],
     };
   }
 }
