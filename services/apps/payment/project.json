@@ -5,6 +5,7 @@
   "projectType": "application",
   "targets": {
     "build": {
+      "generatePackageJson": true,
       "executor": "@nrwl/webpack:webpack",
       "outputs": ["{options.outputPath}"],
       "options": {
