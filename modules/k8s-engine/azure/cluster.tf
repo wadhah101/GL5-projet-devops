@@ -31,8 +31,8 @@ resource "azurerm_kubernetes_cluster" "cluster" {
     network_policy = "calico"
   }
 
-  # azure_active_directory_role_based_access_control {
-  #   managed            = true
-  #   azure_rbac_enabled = true
-  # }
+  azure_active_directory_role_based_access_control {
+    managed            = true
+    azure_rbac_enabled = true
+  }
 }
