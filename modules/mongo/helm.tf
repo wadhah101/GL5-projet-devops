@@ -1,7 +1,7 @@
-resource "helm_release" "kube_redis" {
-  name       = "redis"
+resource "helm_release" "mongodb" {
+  name       = "mongodb"
   repository = "https://charts.bitnami.com/bitnami"
-  chart      = "redis"
+  chart      = "mongodb"
   namespace  = kubernetes_namespace.namespace.metadata[0].name
 
   set {
@@ -10,7 +10,7 @@ resource "helm_release" "kube_redis" {
   }
 
   # set {
-  #   name  = "master.resources.limits"
+  #   name  = "resources.limits"
   #   value = jsonencode({ cpu = "200m", memory = "1Gi" })
   # }
 }

@@ -6,6 +6,6 @@ resource "kubernetes_namespace" "namespace" {
       stack       = var.stack
       client_name = var.client_name
     }
-    name = "redis"
+    name = "mongo"
   }
 }
