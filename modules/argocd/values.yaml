@@ -1,4 +1,3 @@
 configs:
   params:
     server.insecure: true
-    server.basehref: "/argocd"
