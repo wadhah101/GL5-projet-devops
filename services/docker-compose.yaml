@@ -1,0 +1,22 @@
+version: '3.9'
+services:
+  redis:
+    image: redis:6.2.5
+    container_name: redis
+    restart: always
+    ports:
+      - 6379:6379
+    command: redis-server --appendonly yes
+    networks:
+      - redis-net
+  mongo:
+    image: mongo:4.4.6
+    container_name: mongo
+    restart: always
+    ports:
+      - 27017:27017
+    command: mongod --bind_ip_all
+    networks:
+      - redis-net
+networks:
+  redis-net:
