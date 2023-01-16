@@ -7,19 +7,32 @@ image:
   repository: wadhah101/api-gateway
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "673e64c1243b7eee107b997e230e66db1a4403aa"
+  tag: "f819296dd119efb71d88494b1ab6a1977166bdcf"
 
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
-
+environmentVars:
+  - name: ORDER_SERVICE_HOST
+    value: xyz
+  - name: ORDER_SERVICE_PORT
+    value: 3000
+  - name: REDIS_HOST
+    value: "redis"
+  - name: REDIS_PORT
+    value: 6379
+  - name: JEAGER_AGENT_HOST
+    value: JEAGER_AGENT
+  - name: JEAGER_AGENT_PORT
+    value: 1302
+  - name: REDIS_PASSWORD
+    value: pass13
 podAnnotations: {}
 
 service:
   type: ClusterIP
   port: 80
   metricsPort: 8080
-
 ingress:
   enabled: false
   className: ""
