@@ -6,11 +6,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { orderConfig } from './config';
 import { Order, OrderSchema } from '@my-workspace/schemas';
-import {
-  ClientProxyFactory,
-  RedisOptions,
-  Transport,
-} from '@nestjs/microservices';
+import { ClientProxyFactory, Transport } from '@nestjs/microservices';
 import { MESSAGING_SERVICE_TOKEN } from './constants';
 import { HealthCheckModule } from '@my-workspace/healthcheck';
 

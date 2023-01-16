@@ -9,9 +9,13 @@ import { NestFactory } from '@nestjs/core';
 
 import { AppModule } from './app/app.module';
 import { gatewayCfgSymbol, GatewayConfig } from './app/config';
-
+import { winstonLoggerFactory } from '@my-workspace/loggers';
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, {
+    logger: winstonLoggerFactory({
+      serviceName: 'api-gateway',
+    }),
+  });
   const config = await app
     .get(ConfigService)
     .get<GatewayConfig>(gatewayCfgSymbol);

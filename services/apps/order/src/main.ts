@@ -10,9 +10,14 @@ import { Transport } from '@nestjs/microservices';
 
 import { AppModule } from './app/app.module';
 import { orderCfgSymbol, OrderConfig } from './app/config';
+import { winstonLoggerFactory } from '@my-workspace/loggers';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, {
+    logger: winstonLoggerFactory({
+      serviceName: 'order',
+    }),
+  });
   const appConfig = await app
     .get(ConfigService)
     .get<OrderConfig>(orderCfgSymbol);
