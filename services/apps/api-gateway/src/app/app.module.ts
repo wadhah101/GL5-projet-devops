@@ -6,9 +6,16 @@ import { OrderController } from './app.controller';
 import { AppService } from './app.service';
 import { gatewayConfig } from './config';
 import { MESSAGING_SERVICE_TOKEN } from './constants';
+import { HealthCheckModule } from '@my-workspace/healthcheck';
 
 @Module({
-  imports: [ConfigModule.forFeature(gatewayConfig)],
+  imports: [
+    ConfigModule.forFeature(gatewayConfig),
+    HealthCheckModule.forRoot({
+      memory: true,
+      mongo: false,
+    }),
+  ],
   controllers: [OrderController],
   providers: [
     AppService,
