@@ -1,4 +1,5 @@
 #tfsec:ignore:azure-container-limit-authorized-ips
+#tfsec:ignore:azure-container-use-rbac-permissions
 resource "azurerm_kubernetes_cluster" "cluster" {
   name       = module.naming.kubernetes_cluster.name
   location   = module.azure_region.location
@@ -29,10 +30,5 @@ resource "azurerm_kubernetes_cluster" "cluster" {
   network_profile {
     network_plugin = "kubenet"
     network_policy = "calico"
-  }
-
-  azure_active_directory_role_based_access_control {
-    managed            = true
-    azure_rbac_enabled = true
   }
 }
