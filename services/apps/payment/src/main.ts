@@ -43,7 +43,7 @@ async function bootstrap() {
   });
   ms.listen().then(() =>
     Logger.log(
-      `🚀 Microservice is exchanging messages on: ${appConfig.REDIS_URL}`
+      `🚀 Microservice is exchanging messages on: redis://${appConfig.REDIS_HOST}:${appConfig.REDIS_PORT}`
     )
   );
   await app.listen(APP_PORT);
