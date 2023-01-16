@@ -1,16 +1,17 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: argocd-ingress
+  name: argocd-server-ingress
+  namespace: argocd
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
-    nginx.ingress.kubernetes.io/rewrite-target: /static/$2
+    kubernetes.io/ingress.class: addon-http-application-routing
 spec:
-  ingressClassName: nginx
   rules:
-    - http:
+    - host: devops.cqrs.com
+      http:
         paths:
-          - path: /
+          - path: /argocd
             pathType: Prefix
             backend:
               service:
