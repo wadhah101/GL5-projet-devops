@@ -16,18 +16,33 @@ import { RedisInstrumentation } from '@opentelemetry/instrumentation-redis';
 import { MongoDBInstrumentation } from '@opentelemetry/instrumentation-mongodb';
 import { NestInstrumentation } from '@opentelemetry/instrumentation-nestjs-core';
 import { ExpressInstrumentation } from '@opentelemetry/instrumentation-express';
+import { BasicTracerProvider } from '@opentelemetry/sdk-trace-base';
+import { Resource } from '@opentelemetry/resources';
+import { SemanticResourceAttributes } from '@opentelemetry/semantic-conventions';
+import {
+  ConsoleSpanExporter,
+  SimpleSpanProcessor,
+} from '@opentelemetry/sdk-trace-base';
 
 const otelSDKFactory = (config: {
   JeagerAgentHost: string;
   JeagerAgentPort: number;
   serviceName: string;
   MetricsPort?: number;
-}) =>
-  new NodeSDK({
+}) => {
+  const provider = new BasicTracerProvider({
+    resource: new Resource({
+      [SemanticResourceAttributes.SERVICE_NAME]: config.serviceName,
+    }),
+  });
+  provider.addSpanProcessor(new BatchSpanProcessor(new JaegerExporter()));
+  provider.register();
+  provider.addSpanProcessor(new SimpleSpanProcessor(new ConsoleSpanExporter()));
+  return new NodeSDK({
     serviceName: config.serviceName,
     metricReader: new PrometheusExporter({
       endpoint: '/metrics',
-      port: 8080,
+      port: config.MetricsPort,
     }),
     traceExporter: new JaegerExporter({
       port: config.JeagerAgentPort,
@@ -55,6 +70,7 @@ const otelSDKFactory = (config: {
       new ExpressInstrumentation(),
     ],
   });
+};
 
 export const otelSetup = async (
   config: {

@@ -5,10 +5,8 @@ import { PaymentDocument, PaymentOption } from '@my-workspace/schemas';
 import { CreatePaymentOptionDTO } from './entities/payment.dto';
 import {
   catchError,
-  first,
   filter,
   from,
-  startWith,
   tap,
   throwError,
   take,
@@ -45,19 +43,29 @@ export class AppService {
           paymentOption.cardNumber === payload.cardNumber &&
           paymentOption.expirationDate === payload.expirationDate
       ),
-      tap((paymentOption) => console.log('Payment option', paymentOption)),
       take(1),
       map((paymentOption: PaymentOption) => {
+        const subSpan = this.traceService.startSpan('upsert_payment');
         return iif(
           () => {
-            console.log('zzzz', paymentOption);
             return Object.keys(paymentOption).length === 0;
           },
           from(this.paymentModel.create(payload)).pipe(
-            tap((payment) => console.log('Payment created', payment))
+            tap((payment) => {
+              subSpan.addEvent(
+                'Payment was not found, Finished persisting payment for payment_id: ',
+                payment.id,
+                new Date()
+              );
+            })
           ),
           from(this.paymentModel.updateOne(paymentOption, payload)).pipe(
-            tap((payment) => console.log('Payment updated', payment))
+            tap(() => {
+              subSpan.addEvent(
+                'Payment was found, Finished updating payment for payment_id: ',
+                new Date()
+              );
+            })
           )
         );
       }),

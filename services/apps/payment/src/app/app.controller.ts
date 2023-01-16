@@ -10,7 +10,6 @@ export class AppController {
 
   @MessagePattern('upsert_payment')
   upsertPayment(payload: CreatePaymentOptionDTO) {
-    console.log('here');
     return this.appService.createPayment(payload);
   }
 }
