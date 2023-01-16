@@ -5,7 +5,9 @@ resource "azurerm_kubernetes_cluster" "cluster" {
   location   = module.azure_region.location
   dns_prefix = module.naming.kubernetes_cluster.name_unique
 
-  kubernetes_version = "1.25"
+  kubernetes_version               = "1.25"
+  http_application_routing_enabled = true
+
 
   resource_group_name = var.resource_group_name
 
