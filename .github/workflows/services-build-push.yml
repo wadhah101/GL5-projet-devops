@@ -1,11 +1,11 @@
-name: Validate, build & Deploy
+name: Build and push services
 
 on:
   push:
     branches:
       - master
-    paths:
-      - "services"
+    # paths:
+    #   - "services"
 
 jobs:
   build-deploy:
