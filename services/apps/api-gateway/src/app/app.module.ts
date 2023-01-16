@@ -29,6 +29,7 @@ import { OpenTelModule } from '@my-workspace/opentelemetry';
           options: {
             host: configService.REDIS_HOST,
             port: configService.REDIS_PORT,
+            password: configService.REDIS_PASSWORD,
           },
         });
       },

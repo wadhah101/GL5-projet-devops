@@ -22,12 +22,20 @@ async function bootstrap() {
   const appConfig = await app
     .get(ConfigService)
     .get<OrderConfig>(orderCfgSymbol);
-  const { APP_HOST, APP_PORT, JEAGER_AGENT_HOST, JEAGER_AGENT_PORT } =
-    appConfig;
+  const {
+    APP_HOST,
+    APP_PORT,
+    JEAGER_AGENT_HOST,
+    JEAGER_AGENT_PORT,
+    REDIS_HOST,
+    REDIS_PORT,
+    REDIS_PASSWORD,
+  } = appConfig;
   const ms = (await app).connectMicroservice({
     transport: Transport.REDIS,
     options: {
-      url: `redis://${appConfig.REDIS_HOST}:${appConfig.REDIS_PORT}`,
+      url: `redis://${REDIS_HOST}:${REDIS_PORT}`,
+      password: REDIS_PASSWORD,
     },
   });
   await otelSetup({
