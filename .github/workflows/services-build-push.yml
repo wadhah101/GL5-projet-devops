@@ -13,11 +13,11 @@ jobs:
     strategy:
       matrix:
         service:
-          - folder: "services/apps/api-gateway"
+          - folder: "apps/api-gateway"
             name: api-gateway
-          - folder: "services/apps/order"
+          - folder: "apps/order"
             name: order
-          - folder: "services/apps/payment"
+          - folder: "apps/payment"
             name: payment
     steps:
       - name: Set up Docker Buildx
@@ -34,7 +34,7 @@ jobs:
         with:
           cache-from: "wadhah101/${{ matrix.service.name }}:latest"
           file: ${{ matrix.service.folder }}/Dockerfile
-          # context: "{{defaultContext}}:services"
+          context: "{{defaultContext}}:services"
           push: true
           tags: |
             wadhah101/${{ matrix.service.name }}:latest
