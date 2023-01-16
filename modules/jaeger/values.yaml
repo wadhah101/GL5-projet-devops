@@ -2,5 +2,8 @@ provisionDataStore:
   elasticsearch: true
   cassandra: false
 
+storage:
+  type: elasticsearch
+
 elasticsearch:
   replicas: 1
