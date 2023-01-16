@@ -1,0 +1,6 @@
+provisionDataStore:
+  elasticsearch: true
+  cassandra: false
+
+elasticsearch:
+  replicas: 1
