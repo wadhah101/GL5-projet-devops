@@ -10,9 +10,14 @@ import { Transport } from '@nestjs/microservices';
 
 import { AppModule } from './app/app.module';
 import { paymentCfgSymbol, PaymentConfig } from './app/constants';
+import { winstonLoggerFactory } from '@my-workspace/loggers';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, {
+    logger: winstonLoggerFactory({
+      serviceName: 'payment',
+    }),
+  });
   const appConfig = await app
     .get(ConfigService)
     .get<PaymentConfig>(paymentCfgSymbol);
