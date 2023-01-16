@@ -40,6 +40,8 @@ async function bootstrap() {
   await otelSetup({
     JeagerAgentHost: JEAGER_AGENT_HOST,
     JeagerAgentPort: JEAGER_AGENT_PORT,
+    MetricsPort: 8082,
+    serviceName: 'payment',
   });
   ms.listen().then(() =>
     Logger.log(

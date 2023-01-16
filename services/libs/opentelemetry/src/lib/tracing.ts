@@ -11,13 +11,22 @@ import { B3InjectEncoding, B3Propagator } from '@opentelemetry/propagator-b3';
 import { PrometheusExporter } from '@opentelemetry/exporter-prometheus';
 import { NodeSDK } from '@opentelemetry/sdk-node';
 import { AsyncLocalStorageContextManager } from '@opentelemetry/context-async-hooks';
+import { WinstonInstrumentation } from '@opentelemetry/instrumentation-winston';
+import { RedisInstrumentation } from '@opentelemetry/instrumentation-redis';
+import { MongoDBInstrumentation } from '@opentelemetry/instrumentation-mongodb';
+import { NestInstrumentation } from '@opentelemetry/instrumentation-nestjs-core';
+import { ExpressInstrumentation } from '@opentelemetry/instrumentation-express';
+
 const otelSDKFactory = (config: {
   JeagerAgentHost: string;
   JeagerAgentPort: number;
+  serviceName: string;
+  MetricsPort?: number;
 }) =>
   new NodeSDK({
+    serviceName: config.serviceName,
     metricReader: new PrometheusExporter({
-      port: 8080,
+      port: config.MetricsPort || 8080,
     }),
     traceExporter: new JaegerExporter({
       port: config.JeagerAgentPort,
@@ -36,14 +45,27 @@ const otelSDKFactory = (config: {
         }),
       ],
     }),
-    instrumentations: [getNodeAutoInstrumentations()],
+    instrumentations: [
+      getNodeAutoInstrumentations(),
+      new WinstonInstrumentation(),
+      new RedisInstrumentation(),
+      new MongoDBInstrumentation(),
+      new NestInstrumentation(),
+      new ExpressInstrumentation(),
+    ],
   });
 
 export const otelSetup = async (
   config: {
     JeagerAgentHost: string;
     JeagerAgentPort: number;
-  } = { JeagerAgentHost: 'localhost', JeagerAgentPort: 6832 }
+    serviceName: string;
+    MetricsPort?: number;
+  } = {
+    JeagerAgentHost: 'localhost',
+    JeagerAgentPort: 6832,
+    serviceName: 'unknown',
+  }
 ) => {
   const otelsdk = otelSDKFactory(config);
   await otelsdk.start();
