@@ -1,3 +1,17 @@
 # GL5-projet-devops
 
-Full devops project
+## Grafana
+
+<http://crqrswo.francecentral.cloudapp.azure.com/grafana>
+
+## ArgoCD
+
+<http://crqrswo.francecentral.cloudapp.azure.com/argocd>
+
+## Jeager
+
+<http://crqrswo.francecentral.cloudapp.azure.com/jeager>
+
+## API
+
+<http://crqrswo.francecentral.cloudapp.azure.com/order>
