@@ -48,6 +48,13 @@ export class AppService {
           paymentOption.cardNumber === payload.cardNumber &&
           paymentOption.expirationDate === payload.expirationDate
       ),
+      map((paymentOption: PaymentOption) => {
+        if (Object.keys(paymentOption).length === 0) {
+          this.logger.debug('Payment was not found');
+          console.log('Payment was not found');
+          return {};
+        }
+      }),
       take(1),
       map((paymentOption: PaymentOption) => {
         const subSpan = this.traceService.startSpan('upsert_payment');
