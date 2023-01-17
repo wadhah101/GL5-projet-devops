@@ -14,6 +14,7 @@ import { winstonLoggerFactory } from '@my-workspace/loggers';
 import { otelSetup } from '@my-workspace/opentelemetry';
 
 async function bootstrap() {
+  console.log('YO');
   const app = await NestFactory.create(AppModule, {
     logger: winstonLoggerFactory({
       serviceName: 'payment',
@@ -42,7 +43,7 @@ async function bootstrap() {
   await otelSetup({
     JeagerAgentHost: JEAGER_AGENT_HOST,
     JeagerAgentPort: JEAGER_AGENT_PORT,
-    MetricsPort: 8080,
+    MetricsPort: 8089,
     serviceName: 'payment',
   });
   ms.listen().then(() =>

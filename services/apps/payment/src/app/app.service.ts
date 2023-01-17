@@ -14,6 +14,7 @@ import {
   map,
   finalize,
   startWith,
+  reduce,
 } from 'rxjs';
 import { RpcException } from '@nestjs/microservices';
 import { Span } from 'nestjs-otel';
@@ -42,24 +43,20 @@ export class AppService {
         this.logger.debug('Payment fetched from mongo');
         console.log('Payment fetched from mongo');
       }),
-      filter(
-        (paymentOption: PaymentOption) =>
-          paymentOption.cardHolder === payload.cardHolder &&
-          paymentOption.cardNumber === payload.cardNumber &&
-          paymentOption.expirationDate === payload.expirationDate
-      ),
-      map((paymentOption: PaymentOption) => {
-        if (Object.keys(paymentOption).length === 0) {
-          this.logger.debug('Payment was not found');
-          console.log('Payment was not found');
-          return {};
-        }
+      reduce((val: PaymentOption, paymentOption) => {
+        if (
+          (paymentOption.cardHolder === payload.cardHolder &&
+            paymentOption.cardNumber === payload.cardNumber &&
+            paymentOption.expirationDate === payload.expirationDate) === true
+        ) {
+          return paymentOption;
+        } else return {};
       }),
-      take(1),
       map((paymentOption: PaymentOption) => {
         const subSpan = this.traceService.startSpan('upsert_payment');
         return iif(
           () => {
+            console.log('checking IF STATEMENT');
             return Object.keys(paymentOption).length === 0;
           },
           from(this.paymentModel.create(payload)).pipe(

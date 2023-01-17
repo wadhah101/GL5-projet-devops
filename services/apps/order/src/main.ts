@@ -42,7 +42,7 @@ async function bootstrap() {
   await otelSetup({
     JeagerAgentHost: JEAGER_AGENT_HOST,
     JeagerAgentPort: JEAGER_AGENT_PORT,
-    MetricsPort: 8080,
+    MetricsPort: process.env.ENV === 'dev' ? 8085 : 8080,
     serviceName: 'order',
   });
   ms.listen().then(() =>
