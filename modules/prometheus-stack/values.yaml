@@ -18,3 +18,18 @@ prometheus:
         static_configs:
           - targets:
               - "payment-release-node-metrics.backend.svc.cluster.local:8080"
+grafana:
+  grafana.ini:
+    server:
+      domain: crqrswo.francecentral.cloudapp.azure.com
+      root_url: "http://crqrswo.francecentral.cloudapp.azure.com/grafana"
+      serve_from_sub_path: true
+
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: azure/application-gateway
+      nginx.ingress.kubernetes.io/ssl-redirect: "false"
+
+    hosts: [crqrswo.francecentral.cloudapp.azure.com]
+    paths: [/grafana]
