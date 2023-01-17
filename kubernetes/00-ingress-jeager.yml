@@ -5,13 +5,14 @@ metadata:
   namespace: jeager
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
-    kubernetes.io/ingress.class: addon-http-application-routing
+    kubernetes.io/ingress.class: azure/application-gateway
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   rules:
-    - host: jeager.cqrs.com
+    - host: crqrswo.francecentral.cloudapp.azure.com
       http:
         paths:
-          - path: /
+          - path: /setup/jeager(/|$)(.*)
             pathType: Prefix
             backend:
               service:
