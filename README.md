@@ -31,7 +31,7 @@ deploy jeager ingress using kubectl:
 
 ## Ingress
 
-Ingress is handled with azure application gateway controller
+Ingress is handled with azure application gateway controller and is set up at the terraform stack level.
 
 Adding these annotations to ingress resources will trigger the azure app gateway operator.
 
@@ -39,6 +39,19 @@ Adding these annotations to ingress resources will trigger the azure app gateway
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
     kubernetes.io/ingress.class: azure/application-gateway
+```
+
+some resources may need further modification to work with ingress path param
+example Argocd :
+
+`modules/argocd/values.yaml`
+
+```yaml
+configs:
+  params:
+    server.insecure: true
+    server.basehref: "/argocd"
+    server.rootpath: "/argocd"
 ```
 
 ## Grafana
