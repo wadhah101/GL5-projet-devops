@@ -35,13 +35,11 @@ export class AppService {
     return from(await this.paymentModel.find<PaymentOption>()).pipe(
       startWith({}),
       tap((c) => {
-        console.log(c);
         currentSpan.addEvent(
           'Payment creation request started from the payment service',
           new Date()
         );
         this.logger.debug('Payment fetched from mongo');
-        console.log('Payment fetched from mongo');
       }),
       reduce((val: PaymentOption, paymentOption) => {
         if (
@@ -56,13 +54,11 @@ export class AppService {
         const subSpan = this.traceService.startSpan('upsert_payment');
         return iif(
           () => {
-            console.log('checking IF STATEMENT');
             return Object.keys(paymentOption).length === 0;
           },
           from(this.paymentModel.create(payload)).pipe(
             tap((payment) => {
               this.logger.debug('Payment persisted successfully');
-              console.log('Payment persisted successfully');
               subSpan.addEvent(
                 'Payment was not found, Finished persisting payment for payment_id: ',
                 payment.id,
@@ -73,7 +69,6 @@ export class AppService {
           from(this.paymentModel.updateOne(paymentOption, payload)).pipe(
             tap(() => {
               this.logger.debug('Payment updated successfully');
-              console.log('Payment updated successfully');
               subSpan.addEvent(
                 'Payment was found, Finished updating payment for payment_id: ',
                 new Date()

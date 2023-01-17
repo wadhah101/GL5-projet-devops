@@ -14,7 +14,6 @@ import { winstonLoggerFactory } from '@my-workspace/loggers';
 import { otelSetup } from '@my-workspace/opentelemetry';
 
 async function bootstrap() {
-  console.log('YO');
   const app = await NestFactory.create(AppModule, {
     logger: winstonLoggerFactory({
       serviceName: 'payment',
@@ -32,7 +31,6 @@ async function bootstrap() {
     REDIS_PORT,
     REDIS_PASSWORD,
   } = appConfig;
-  console.log('APP CONFIG \n', appConfig);
   const ms = (await app).connectMicroservice<MicroserviceOptions>({
     transport: Transport.REDIS,
     options: {
