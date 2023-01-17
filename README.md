@@ -66,7 +66,7 @@ Argo CD is responsible for deploying our  custom-made charts :
 
 ![](pictures/Screenshot%20from%202023-01-17%2019-08-43.png)
 
-![](pictures/Screenshot%20from%202023-01-17%2019-08-47.png)
+![](pictures/Screenshot%20from%202023-01-17%2019-09-00.png)
 
 ![](pictures/Screenshot%20from%202023-01-17%2019-08-53.png)
 
