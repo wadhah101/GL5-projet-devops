@@ -5,6 +5,8 @@ configs:
     server.rootpath: "/argocd"
 
 server:
+  extraArgs:
+    - --application-namespaces="*"
   ingress:
     enabled: true
     annotations:
@@ -13,3 +15,7 @@ server:
 
     hosts: [crqrswo.francecentral.cloudapp.azure.com]
     paths: [/argocd]
+
+controller:
+  extraArgs:
+    - --application-namespaces="*"
