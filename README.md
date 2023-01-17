@@ -5,9 +5,13 @@ GL5 Final year DevOps project
 ## structure
 
 `modules` : contains relevant terraform modules
+
 `services` : contains 3 NestJS services with Dockerfile in `services/apps`
+
 `kubernetes` : contains kubectl files.
+
 `kubernetes/services` : contains Charts default values
+
 `kubernetes/node/node-app-chart` : contains microservices charts configuration
 
 ## Deployment
