@@ -7,16 +7,12 @@ image:
   repository: wadhah101/payment
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "d488a6a71018121d805c9c263444102d48c638ba"
+  tag: "898beedd12beeff85d61967c04b086e89258e942"
 
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 environmentVars:
-  - name: ORDER_SERVICE_HOST
-    value: xyz
-  - name: ORDER_SERVICE_PORT
-    value: 3000
   - name: REDIS_HOST
     value: redis-master.redis
   - name: REDIS_PORT
@@ -27,6 +23,8 @@ environmentVars:
     value: 6832
   - name: REDIS_PASSWORD
     value: XQkaitathL
+  - name: MONGO_URL
+    value: mongodb://mongodb.mongo:27017
 podAnnotations: {}
 
 service:

@@ -31,6 +31,8 @@ async function bootstrap() {
     REDIS_PORT,
     REDIS_PASSWORD,
   } = appConfig;
+  console.log('APP CONFIG \n', appConfig);
+
   const ms = (await app).connectMicroservice({
     transport: Transport.REDIS,
     options: {
