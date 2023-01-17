@@ -1,0 +1,4 @@
+auth:
+  rootPassword: "secretk167058"
+
+architecture: standalone
