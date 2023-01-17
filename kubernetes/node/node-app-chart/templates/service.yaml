@@ -4,6 +4,7 @@ metadata:
   name: {{ include "node-app-chart.fullname" . }}
   labels:
     {{- include "node-app-chart.labels" . | nindent 4 }}
+  namespace: {{ .Values.namespace }}
 spec:
   type: {{ .Values.service.type }}
   ports:

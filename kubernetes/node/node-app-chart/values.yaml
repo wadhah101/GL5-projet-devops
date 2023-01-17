@@ -1,5 +1,5 @@
 replicaCount: 1
-
+namespace: backend
 image:
   repository: nginx
   pullPolicy: IfNotPresent
