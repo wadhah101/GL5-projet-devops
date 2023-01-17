@@ -31,12 +31,13 @@ export class AppService {
   async createPayment(payload: CreatePaymentOptionDTO) {
     const currentSpan = this.traceService.getSpan();
     return from(await this.paymentModel.find<PaymentOption>()).pipe(
-      tap((c) =>
+      tap((c) => {
         currentSpan.addEvent(
           'Payment creation request started from the payment service',
           new Date()
-        )
-      ),
+        );
+        this.logger.debug('Payment fetched from mongo');
+      }),
       filter(
         (paymentOption: PaymentOption) =>
           paymentOption.cardHolder === payload.cardHolder &&
@@ -52,6 +53,7 @@ export class AppService {
           },
           from(this.paymentModel.create(payload)).pipe(
             tap((payment) => {
+              this.logger.debug('Payment persisted successfully');
               subSpan.addEvent(
                 'Payment was not found, Finished persisting payment for payment_id: ',
                 payment.id,
@@ -61,6 +63,7 @@ export class AppService {
           ),
           from(this.paymentModel.updateOne(paymentOption, payload)).pipe(
             tap(() => {
+              this.logger.debug('Payment updated successfully');
               subSpan.addEvent(
                 'Payment was found, Finished updating payment for payment_id: ',
                 new Date()

@@ -38,6 +38,7 @@ export class AppService {
           this.messagingOperator.send('upsert_payment', payload.payment)
         ).pipe(
           tap((payment) => {
+            this.logger.debug('Payment request sent to the payment service');
             span.addEvent(
               'Sent payment request hop to order service for payment_id: ',
               payment.id,
@@ -47,6 +48,7 @@ export class AppService {
           concatMap(() =>
             from(this.orderModel.create(payload)).pipe(
               tap((order) => {
+                this.logger.debug('Order persisted successfully');
                 span.addEvent(
                   'Finished persisting order for order_id: ',
                   order.id,
