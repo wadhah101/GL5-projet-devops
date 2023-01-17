@@ -7,7 +7,7 @@ image:
   repository: wadhah101/api-gateway
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "f819296dd119efb71d88494b1ab6a1977166bdcf"
+  tag: "d488a6a71018121d805c9c263444102d48c638ba"
 
 imagePullSecrets: []
 nameOverride: ""
@@ -41,13 +41,15 @@ ingress:
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   hosts:
-    - host: chart-example.local
+    - host: api.cqrs.com
       paths:
-        - path: /api
+        - path: /
           pathType: Prefix
           backend:
             service:
-              name:
+              name: api-gateway-release-node
+              port:
+                number: 80
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
