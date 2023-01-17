@@ -5,19 +5,19 @@ prometheus:
         scrape_interval: 5s
         static_configs:
           - targets:
-              - "api-gateway-release-node-metrics.backend.svc.cluster.local:8080"
+              - "api-gateway-node-metrics.backend.svc.cluster.local:8080"
 
       - job_name: order_scrape
         scrape_interval: 5s
         static_configs:
           - targets:
-              - "order-release-node-metrics.backend.svc.cluster.local:8080"
+              - "order-node-metrics.backend.svc.cluster.local:8080"
 
       - job_name: payment_scrape
         scrape_interval: 5s
         static_configs:
           - targets:
-              - "payment-release-node-metrics.backend.svc.cluster.local:8080"
+              - "payment-node-metrics.backend.svc.cluster.local:8080"
 grafana:
   grafana.ini:
     server:
