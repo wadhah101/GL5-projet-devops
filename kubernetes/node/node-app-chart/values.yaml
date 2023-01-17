@@ -6,8 +6,6 @@ image:
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
 environmentVars:
-  - name: VARIABLE 1
-    value: VALUE 1
 
 imagePullSecrets: []
 nameOverride: ""
