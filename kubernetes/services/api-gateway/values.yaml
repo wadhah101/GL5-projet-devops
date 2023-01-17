@@ -14,11 +14,11 @@ nameOverride: ""
 fullnameOverride: ""
 environmentVars:
   - name: REDIS_HOST
-    value: redis-master.redis
+    value: redis-master.redis.svc.cluster.local
   - name: REDIS_PORT
     value: 6379
   - name: JEAGER_AGENT_HOST
-    value: jeager-jaeger-agent.jeager
+    value: jeager-jaeger-agent.jeager.svc.cluster.local
   - name: JEAGER_AGENT_PORT
     value: 6832
   - name: REDIS_PASSWORD

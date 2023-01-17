@@ -7,7 +7,7 @@ image:
   repository: wadhah101/order
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "898beedd12beeff85d61967c04b086e89258e942"
+  tag: "efd25f54404b65179a1a1fe9bfb376f036c8c139"
 
 imagePullSecrets: []
 nameOverride: ""

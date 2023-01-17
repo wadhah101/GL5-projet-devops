@@ -34,7 +34,7 @@ async function bootstrap() {
   const ms = (await app).connectMicroservice({
     transport: Transport.REDIS,
     options: {
-      url: `redis://${REDIS_HOST}:${REDIS_PORT}`,
+      url: `redis://10.0.255.226:${REDIS_PORT}/`,
       password: appConfig.REDIS_PASSWORD,
     },
   });
