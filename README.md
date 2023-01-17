@@ -52,6 +52,18 @@ configs:
     server.insecure: true
     server.basehref: "/argocd"
     server.rootpath: "/argocd"
+
+server:
+  extraArgs:
+    - --application-namespaces="*"
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: azure/application-gateway
+      nginx.ingress.kubernetes.io/ssl-redirect: "false"
+
+    hosts: [crqrswo.francecentral.cloudapp.azure.com]
+    paths: [/argocd]
 ```
 
 ## Grafana
