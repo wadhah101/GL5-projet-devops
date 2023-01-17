@@ -11,7 +11,7 @@ spec:
     - host: crqrswo.francecentral.cloudapp.azure.com
       http:
         paths:
-          - path: /jaeger
+          - path: "/jaeger"
             pathType: Prefix
             backend:
               service:

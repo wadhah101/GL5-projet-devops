@@ -10,7 +10,7 @@
 
 ## Jeager
 
-<http://crqrswo.francecentral.cloudapp.azure.com/jeager/search>
+<http://crqrswo.francecentral.cloudapp.azure.com/jaeger/search>
 
 ## API
 
