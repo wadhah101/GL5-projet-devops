@@ -35,8 +35,8 @@ const otelSDKFactory = (config: {
       [SemanticResourceAttributes.SERVICE_NAME]: config.serviceName,
     }),
   });
-  provider.addSpanProcessor(new BatchSpanProcessor(new JaegerExporter()));
-  provider.register();
+  console.log('config.JeagerAgentHost', config.JeagerAgentHost);
+  console.log('config.JeagerAgentPort', config.JeagerAgentPort);
   provider.addSpanProcessor(new SimpleSpanProcessor(new ConsoleSpanExporter()));
   return new NodeSDK({
     serviceName: config.serviceName,
