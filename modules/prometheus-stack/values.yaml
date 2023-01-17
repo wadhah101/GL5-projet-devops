@@ -11,9 +11,7 @@ prometheus:
         scrape_interval: 5s
         static_configs:
           - targets:
-              - "api-gateway-release-node-metrics.backend.svc.cluster.local:8080"
               - "order-release-node-metrics.backend.svc.cluster.local:8080"
-              - "payment-release-node-metrics.backend.svc.cluster.local:8080"
 
       - job_name: payment_scrape
         scrape_interval: 5s
