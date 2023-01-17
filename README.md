@@ -29,6 +29,18 @@ deploy the second stack using terraform :
 deploy jeager ingress using kubectl:
 `kubernetes/00-ingress-jeager.yml`
 
+## Ingress
+
+Ingress is handled with azure application gateway controller
+
+Adding these annotations to ingress resources will trigger the azure app gateway operator.
+
+```yaml
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    kubernetes.io/ingress.class: azure/application-gateway
+```
+
 ## Grafana
 
 Grafana is integrated with the Prometheus Operator within kubernetes and provides every possible metric in the cluster
