@@ -4,6 +4,8 @@ resource "helm_release" "kube_prometheus" {
   chart      = "kube-prometheus-stack"
   namespace  = kubernetes_namespace.namespace.metadata[0].name
 
+  force_update = true
+
   values = [
     "${file("${path.module}/values.yaml")}"
   ]
