@@ -46,6 +46,12 @@ Example of cluster metrics:
 
 ## ArgoCD
 
+Argo CD is responsible for deploying our  custom-made charts :
+
+- api-gateway-service-chart
+- order-service-chart
+- payment-service-chart
+
 ![](pictures/Screenshot%20from%202023-01-17%2019-08-43.png)
 
 ![](pictures/Screenshot%20from%202023-01-17%2019-08-47.png)
@@ -55,6 +61,10 @@ Example of cluster metrics:
 <http://crqrswo.francecentral.cloudapp.azure.com/argocd>
 
 ## Jeager
+
+Jeager is integrated with the microservices and collected traces directly
+
+Example of api-gateway-service traces
 
 ![](pictures/Screenshot%20from%202023-01-17%2019-09-53.png)
 
