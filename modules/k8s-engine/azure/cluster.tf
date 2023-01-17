@@ -39,6 +39,6 @@ resource "azurerm_kubernetes_cluster_node_pool" "pool" {
   name                  = "internal"
   kubernetes_cluster_id = azurerm_kubernetes_cluster.cluster.id
   vm_size               = "Standard_D2as_v4"
-  min_count             = 0
-  max_count             = 1
+  mode                  = "System"
+  count                 = 1
 }
