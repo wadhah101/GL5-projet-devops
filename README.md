@@ -31,9 +31,9 @@ deploy jeager ingress using kubectl:
 
 ## Grafana
 
-![](pictures/Screenshot%20from%202023-01-17%2018-31-20.png)
-
 ![](pictures/Screenshot%20from%202023-01-17%2019-09-18.png)
+
+![](pictures/Screenshot%20from%202023-01-17%2019-09-35.png)
 
 <http://crqrswo.francecentral.cloudapp.azure.com/grafana>
 
