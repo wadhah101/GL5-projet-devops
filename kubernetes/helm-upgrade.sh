@@ -1,4 +1,4 @@
 #!/bin/bash
-helm upgrade -f services/api-gateway/values.yaml -n backend api-gateway-release node/node-app-chart &&
-    helm upgrade -f services/order/values.yaml -n backend order-release node/node-app-chart &&
-    helm upgrade -f services/payment/values.yaml -n backend payment-release node/node-app-chart
+helm install -f services/api-gateway/values.yaml api-gateway-release-2 node/node-app-chart &&
+    helm install -f services/order/values.yaml order-release-2 node/node-app-chart &&
+    helm install -f services/payment/values.yaml payment-release-2 node/node-app-chart
