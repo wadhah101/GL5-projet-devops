@@ -4,13 +4,7 @@ resource "helm_release" "mongodb" {
   chart      = "mongodb"
   namespace  = kubernetes_namespace.namespace.metadata[0].name
 
-  set {
-    name  = "architecture"
-    value = "standalone"
-  }
-
-  # set {
-  #   name  = "resources.limits"
-  #   value = jsonencode({ cpu = "200m", memory = "1Gi" })
-  # }
+  values = [
+    "${file("${path.module}/values.yaml")}"
+  ]
 }
