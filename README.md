@@ -31,7 +31,14 @@ deploy jeager ingress using kubectl:
 
 ## Grafana
 
+Grafana is integrated with the Prometheus Operator within kubernetes and provides every possible metric in the cluster
+
+Application metrics:
+Metrics are exported using open telementry exporter
+
 ![](pictures/Screenshot%20from%202023-01-17%2019-09-18.png)
+
+Example of cluster metrics:
 
 ![](pictures/Screenshot%20from%202023-01-17%2019-09-35.png)
 
