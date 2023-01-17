@@ -18,15 +18,15 @@ environmentVars:
   - name: ORDER_SERVICE_PORT
     value: 3000
   - name: REDIS_HOST
-    value: "redis"
+    value: redis-master.redis
   - name: REDIS_PORT
     value: 6379
   - name: JEAGER_AGENT_HOST
-    value: JEAGER_AGENT
+    value: jeager-jaeger-agent.jeager
   - name: JEAGER_AGENT_PORT
-    value: 1302
+    value: 6832
   - name: REDIS_PASSWORD
-    value: pass13
+    value: XQkaitathL
 podAnnotations: {}
 
 service:
