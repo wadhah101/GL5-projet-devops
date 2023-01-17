@@ -7,7 +7,7 @@ image:
   repository: wadhah101/api-gateway
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "e910617c08b6bf12bfa92bf39c1b79daa8600b5d"
+  tag: "948a110db64611a095558f235a114b1d6860e4fa"
 
 imagePullSecrets: []
 nameOverride: ""
