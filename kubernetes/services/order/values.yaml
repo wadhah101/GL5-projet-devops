@@ -7,24 +7,24 @@ image:
   repository: wadhah101/order
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "efd25f54404b65179a1a1fe9bfb376f036c8c139"
+  tag: "0cd66aaa46e49b3bf936191c139322ab4d814b7c"
 
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 environmentVars:
   - name: REDIS_HOST
-    value: redis-master.redis
+    value: redis-master.redis.svc.cluster.local
   - name: REDIS_PORT
     value: 6379
   - name: JEAGER_AGENT_HOST
-    value: jeager-jaeger-agent.jeager
+    value: jeager-jaeger-agent.jeager.svc.cluster.local
   - name: JEAGER_AGENT_PORT
     value: 6832
   - name: REDIS_PASSWORD
     value: XQkaitathL
   - name: MONGO_URL
-    value: mongodb://mongodb.mongo:27017
+    value: mongodb://mongodb.mongo.svc.cluster.local:27017
 podAnnotations: {}
 
 service:

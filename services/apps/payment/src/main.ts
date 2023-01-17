@@ -6,7 +6,7 @@
 import { Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
-import { Transport } from '@nestjs/microservices';
+import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 
 import { AppModule } from './app/app.module';
 import { paymentCfgSymbol, PaymentConfig } from './app/config';
@@ -31,10 +31,11 @@ async function bootstrap() {
     REDIS_PORT,
   } = appConfig;
   console.log('APP CONFIG \n', appConfig);
-  const ms = (await app).connectMicroservice({
+  const ms = (await app).connectMicroservice<MicroserviceOptions>({
     transport: Transport.REDIS,
     options: {
-      url: `redis://10.0.255.226:${REDIS_PORT}/`,
+      host: appConfig.REDIS_HOST,
+      port: appConfig.REDIS_PORT,
       password: appConfig.REDIS_PASSWORD,
     },
   });
