@@ -32,4 +32,4 @@ grafana:
       nginx.ingress.kubernetes.io/ssl-redirect: "false"
 
     hosts: [crqrswo.francecentral.cloudapp.azure.com]
-    paths: [/grafana]
+    path: /grafana

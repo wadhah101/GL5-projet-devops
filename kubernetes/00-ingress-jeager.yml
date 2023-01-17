@@ -6,13 +6,12 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
     kubernetes.io/ingress.class: azure/application-gateway
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   rules:
     - host: crqrswo.francecentral.cloudapp.azure.com
       http:
         paths:
-          - path: /setup/jeager(/|$)(.*)
+          - path: /jaeger
             pathType: Prefix
             backend:
               service:
