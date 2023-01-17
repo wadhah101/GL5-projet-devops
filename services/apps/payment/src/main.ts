@@ -37,7 +37,6 @@ async function bootstrap() {
     options: {
       host: REDIS_HOST,
       port: REDIS_PORT,
-      password: REDIS_PASSWORD,
     },
   });
   await otelSetup({
