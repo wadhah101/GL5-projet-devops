@@ -37,6 +37,10 @@ const otelSDKFactory = (config: {
   });
   console.log('config.JeagerAgentHost', config.JeagerAgentHost);
   console.log('config.JeagerAgentPort', config.JeagerAgentPort);
+  const jeagerExporter = new JaegerExporter({
+    port: config.JeagerAgentPort,
+    host: config.JeagerAgentHost,
+  });
   provider.addSpanProcessor(new SimpleSpanProcessor(new ConsoleSpanExporter()));
   return new NodeSDK({
     serviceName: config.serviceName,
@@ -44,11 +48,8 @@ const otelSDKFactory = (config: {
       endpoint: '/metrics',
       port: config.MetricsPort,
     }),
-    traceExporter: new JaegerExporter({
-      port: config.JeagerAgentPort,
-      host: config.JeagerAgentHost,
-    }),
-    spanProcessor: new BatchSpanProcessor(new JaegerExporter()),
+    traceExporter: jeagerExporter,
+    spanProcessor: new BatchSpanProcessor(jeagerExporter),
     contextManager: new AsyncLocalStorageContextManager(),
     textMapPropagator: new CompositePropagator({
       propagators: [
