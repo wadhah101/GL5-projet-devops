@@ -102,3 +102,15 @@ Example of api-gateway-service traces
 ![](pictures/Screenshot%20from%202023-01-17%2019-10-05.png)
 
 <http://crqrswo.francecentral.cloudapp.azure.com/order>
+
+## Appendix
+
+### Docker build Pipeline
+
+The microservices build and push to docker hub is automated with github action.
+you can find the definition file `.github/workflows/services-build-push.yml`
+
+### Terraform code validation
+
+The terraform code is validated using TFlint and TFsec on every push to gihub using a github action.
+you can find the definition file `.github/workflows/terraform.yml`
