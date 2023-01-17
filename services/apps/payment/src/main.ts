@@ -29,14 +29,15 @@ async function bootstrap() {
     JEAGER_AGENT_PORT,
     REDIS_HOST,
     REDIS_PORT,
+    REDIS_PASSWORD,
   } = appConfig;
   console.log('APP CONFIG \n', appConfig);
   const ms = (await app).connectMicroservice<MicroserviceOptions>({
     transport: Transport.REDIS,
     options: {
-      host: appConfig.REDIS_HOST,
-      port: appConfig.REDIS_PORT,
-      password: appConfig.REDIS_PASSWORD,
+      host: REDIS_HOST,
+      port: REDIS_PORT,
+      password: REDIS_PASSWORD,
     },
   });
   await otelSetup({

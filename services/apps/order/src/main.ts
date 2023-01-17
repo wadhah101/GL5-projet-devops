@@ -31,7 +31,6 @@ async function bootstrap() {
     REDIS_PORT,
     REDIS_PASSWORD,
   } = appConfig;
-  console.log('APP CONFIG \n', appConfig);
 
   const ms = (await app).connectMicroservice<MicroserviceOptions>({
     transport: Transport.REDIS,
@@ -49,7 +48,7 @@ async function bootstrap() {
   });
   ms.listen().then(() =>
     Logger.log(
-      `🚀 Microservice is exchanging messages on: redis://10.0.255.226:${REDIS_PORT}/`
+      `🚀 Microservice is exchanging messages on: redis://${REDIS_HOST}:${REDIS_PORT}/`
     )
   );
   await app.listen(APP_PORT);
