@@ -7,3 +7,4 @@ storage:
 
 elasticsearch:
   replicas: 1
+  clusterHealthCheckParams: wait_for_status=yellow&timeout=50s
