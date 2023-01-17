@@ -6,7 +6,7 @@ GL5 Final year DevOps project
 
 `modules` : contains relevant terraform modules
 
-`services` : contains 3 NestJS services with Dockerfile in `services/apps`
+`services` : contains 3 NestJS micoservices with Dockerfile in `services/apps`
 
 `kubernetes` : contains kubectl files.
 
